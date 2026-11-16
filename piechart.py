@@ -46,7 +46,7 @@ def main():
     plt.pie(
         amounts,
         labels=categories,
-        autopct="%1.1f%%",
+        autopct=lambda pct: f"{pct:.1f}%\n({pct * sum(amounts) / 100:.0f})",
         startangle=90
     )
 

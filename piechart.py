@@ -50,7 +50,8 @@ def main():
         startangle=90
     )
 
-    plt.title("Expenses by Category")
+    total_expenses = sum(amounts)
+    plt.title(f"Expenses by Category\nTotal Expenses: {total_expenses:,.0f}")
     plt.axis("equal")
     plt.tight_layout()
 

@@ -11,13 +11,18 @@ with open(filename, "a", encoding="utf-8-sig", newline="") as file:
     if not file_exists:
         writer.writerow(["date", "amount", "category"])
 
-    print("請輸入消費紀錄（格式：日期 金額 類別，例如 2026-11-17 100 Transport）")
-    print("輸入完畢請直接按 Enter 結束：")
+    print("輸入完畢按兩次 Enter 結束：")
+    print(f"{"Date" : <10} {"Price" : <8} {"Category" : <8}" )
 
+    while True:
+        line = input().strip()
 
-    date, price ,category = input().split()
-    price = int(price)
+        if not line:
+            break
 
-    writer.writerow([date, price, category])
+        date, price ,category = line.split()
+        price = int(price)
+
+        writer.writerow([date, price, category])
 
 piechart.main()

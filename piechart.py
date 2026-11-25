@@ -42,6 +42,18 @@ def main():
     categories = list(totals.keys())
     amounts = list(totals.values())
 
+
+    print("\n========== Expense Summary ==========")
+
+    for category, amount in totals.items():
+        percentage = amount / sum(amounts) * 100
+        print(f"{category}: {amount:,.0f} ({percentage:.1f}%)")
+
+    print("-------------------------------------")
+    print(f"Total Expenses: {sum(amounts):,.0f}")
+    print("=====================================\n")
+
+
     plt.figure(figsize=(8, 6))
     plt.pie(
         amounts,

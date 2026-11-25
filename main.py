@@ -21,7 +21,7 @@ with open(filename, "a", encoding="utf-8-sig", newline="") as file:
             if not line:
                 break
 
-            date, price ,category = line.split()
+            date, price, category = [item.strip() for item in line.split(",")]
             price = int(price)
 
             writer.writerow([date, price, category])

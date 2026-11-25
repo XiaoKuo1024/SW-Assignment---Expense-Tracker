@@ -58,13 +58,28 @@ def main():
     colors = ["#82B5DB", "#F2BD86", "#8CCDB8", "#C7B5E8", "#F29BA8"]
 
     plt.figure(figsize=(8, 6))
-    plt.pie(
+    
+    wedges, texts, autotexts = plt.pie(
         amounts,
         labels=categories,
         colors=colors,
         autopct=lambda pct: f"{pct:.1f}%\n({pct * sum(amounts) / 100:.0f})",
         startangle=90
     )
+
+    legend_labels = [
+        f"{category}: {amount:,.0f}"
+        for category, amount in zip(categories, amounts)
+    ]
+
+    plt.legend(
+        wedges,
+        legend_labels,
+        title="Expense Categories",
+        loc="center left",
+        bbox_to_anchor=(1, 0.5)
+    )
+
 
 
     total_expenses = sum(amounts)

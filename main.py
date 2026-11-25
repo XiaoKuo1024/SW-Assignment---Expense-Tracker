@@ -12,7 +12,7 @@ with open(filename, "a", encoding="utf-8-sig", newline="") as file:
         writer.writerow(["date", "amount", "category"])
 
     print("輸入完畢按兩次 Enter 結束：")
-    print(f"{"Date" : <10} {"Price" : <8} {"Category" : <8}" )
+    print("[YYYY-MM-DD, price, category]")
 
     while True:
         line = input().strip()

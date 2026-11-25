@@ -57,7 +57,7 @@ def main():
     
     colors = ["#82B5DB", "#F2BD86", "#8CCDB8", "#C7B5E8", "#F29BA8"]
 
-    plt.figure(figsize=(8, 6))
+    plt.figure(figsize=(11, 7))
     
     wedges, texts, autotexts = plt.pie(
         amounts,
@@ -77,7 +77,10 @@ def main():
         legend_labels,
         title="Expense Categories",
         loc="center left",
-        bbox_to_anchor=(1, 0.5)
+        bbox_to_anchor=(1.02, 0.5),
+        fontsize=10,
+        title_fontsize=11,
+        frameon=False
     )
 
 
@@ -85,7 +88,7 @@ def main():
     total_expenses = sum(amounts)
     plt.title(f"Expenses by Category\nTotal Expenses: {total_expenses:,.0f}")
     plt.axis("equal")
-    plt.tight_layout()
+    plt.subplots_adjust(left=0.05, right=0.72, top=0.88, bottom=0.08)
 
     plt.savefig("expense_piechart.png", dpi=300)
     print("Pie chart saved as expense_piechart.png")

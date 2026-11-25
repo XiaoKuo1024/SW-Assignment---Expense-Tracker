@@ -6,20 +6,44 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 
 
+
 def load_expenses(filename="expenses.csv"):
     totals = defaultdict(float)
 
     with open(filename, "r", encoding="utf-8-sig", newline="") as file:
         reader = csv.DictReader(file)
 
-        for row in reader:
-            category = row["category"].strip()
-            amount = float(row["amount"])
+        required_columns = {"date", "amount", "category"}
+        actual_columns = set(reader.fieldnames or [])
+        missing_columns = required_columns - actual_columns
 
-            if category and amount > 0:
-                totals[category] += amount
+        if missing_columns:
+            raise ValueError(
+                "Missing CSV columns: " + ", ".join(sorted(missing_columns))
+            )
+
+        for line_number, row in enumerate(reader, start=2):
+            category = (row.get("category") or "").strip()
+            amount_text = (row.get("amount") or "").strip()
+
+            if not category:
+                print(f"Warning: Row {line_number} has no category. Skipped.")
+                continue
+
+            try:
+                amount = float(amount_text)
+            except ValueError:
+                print(f"Warning: Row {line_number} has invalid amount. Skipped.")
+                continue
+
+            if not (0 < amount < float("inf")):
+                print(f"Warning: Row {line_number} has invalid amount. Skipped.")
+                continue
+
+            totals[category] += amount
 
     return dict(totals)
+
 
 
 def main():

@@ -54,13 +54,18 @@ def main():
     print("=====================================\n")
 
 
+    
+    colors = ["#82B5DB", "#F2BD86", "#8CCDB8", "#C7B5E8", "#F29BA8"]
+
     plt.figure(figsize=(8, 6))
     plt.pie(
         amounts,
         labels=categories,
+        colors=colors,
         autopct=lambda pct: f"{pct:.1f}%\n({pct * sum(amounts) / 100:.0f})",
         startangle=90
     )
+
 
     total_expenses = sum(amounts)
     plt.title(f"Expenses by Category\nTotal Expenses: {total_expenses:,.0f}")

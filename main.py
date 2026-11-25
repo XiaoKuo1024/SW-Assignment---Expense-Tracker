@@ -15,14 +15,20 @@ with open(filename, "a", encoding="utf-8-sig", newline="") as file:
     print("[YYYY-MM-DD, price, category]")
 
     while True:
-        line = input().strip()
+        try :
+            line = input().strip()
 
-        if not line:
+            if not line:
+                break
+
+            date, price ,category = line.split()
+            price = int(price)
+
+            writer.writerow([date, price, category])
+        except ValueError:
+            print("輸入格式錯誤")
             break
-
-        date, price ,category = line.split()
-        price = int(price)
-
-        writer.writerow([date, price, category])
+        except EOFError:
+            break
 
 piechart.main()
